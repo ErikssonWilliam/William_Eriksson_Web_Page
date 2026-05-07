@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>William Eriksson — MSc Industrial Engineering & Management</title>
+  <meta name="description" content="William Eriksson — MSc student at Linköping University specializing in Machine Learning & Financial Engineering.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --muted-2: #94a3b8;
+      --accent: #475569;
+      --accent-hover: #334155;
+      --accent-soft: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, .04);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, .08);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --max: 1100px;
+      --transition: 200ms cubic-bezier(.4, 0, .2, 1);
+    }
+
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-weight: 500;
+      z-index: 1000;
+      transition: top var(--transition);
+    }
+    .skip-link:focus { top: 12px; }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .container.narrow { max-width: 760px; }
+
+    section {
+      padding: 96px 0;
+      scroll-margin-top: 72px;
+    }
+    @media (max-width: 720px) {
+      section { padding: 64px 0; }
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); line-height: 1.08; }
+    h2 {
+      font-size: clamp(1.625rem, 2.6vw, 2rem);
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    h2::before {
+      content: '';
+      width: 28px;
+      height: 1.5px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    h3 { font-size: 1.0625rem; line-height: 1.4; }
+    p { margin: 0 0 16px; }
+    p:last-child { margin-bottom: 0; }
+
+    .muted { color: var(--muted); }
+    .eyebrow {
+      font-size: .8125rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    /* ---------- Nav ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 250, 250, 0.72);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .site-header.scrolled {
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 1px 0 var(--border), 0 1px 8px rgba(15, 23, 42, .04);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      position: relative;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: .9375rem;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .brand:hover { color: var(--accent); }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-menu a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9375rem;
+      font-weight: 500;
+      position: relative;
+      padding: 4px 0;
+      transition: color var(--transition);
+    }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+    .nav-menu a:hover { color: var(--text); }
+    .nav-menu a:hover::after,
+    .nav-menu a.active::after { width: 100%; }
+    .nav-menu a.active { color: var(--text); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      padding: 8px;
+      margin: -8px;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.75px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 720px) {
+      .nav-toggle { display: flex; }
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: saturate(180%) blur(16px);
+        -webkit-backdrop-filter: saturate(180%) blur(16px);
+        padding: 8px 24px 20px;
+        gap: 4px;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform var(--transition), opacity var(--transition);
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-menu li { width: 100%; }
+      .nav-menu a {
+        display: block;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-menu li:last-child a { border-bottom: 0; }
+      .nav-menu a::after { display: none; }
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      font-size: .9375rem;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background var(--transition), color var(--transition),
+                  border-color var(--transition), transform var(--transition);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover {
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: clamp(64px, 12vw, 128px) 0 clamp(64px, 10vw, 112px);
+    }
+    .hero h1 { margin-bottom: 20px; }
+    .hero .tagline {
+      font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+      color: var(--muted);
+      margin-bottom: 36px;
+      max-width: 720px;
+      line-height: 1.5;
+    }
+    .hero .tagline strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---------- Skills ---------- */
+    .skills-groups {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .skills-groups { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    }
+    .skill-group h3 {
+      font-size: .8125rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pills span {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: .8125rem;
+      color: var(--text);
+      font-weight: 500;
+      transition: border-color var(--transition), color var(--transition),
+                  background var(--transition);
+    }
+    .pills span:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .pills.compact span {
+      padding: 3px 10px;
+      font-size: .75rem;
+      background: var(--accent-soft);
+      border-color: transparent;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .pills.compact span:hover {
+      background: var(--border);
+      color: var(--accent-hover);
+    }
+
+    /* ---------- Timeline ---------- */
+    .timeline {
+      list-style: none;
+      margin: 0 0 0 8px;
+      padding: 0;
+      border-left: 1.5px solid var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 40px 28px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+    }
+    .timeline-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 16px;
+      margin-bottom: 10px;
+    }
+    .timeline-meta h3 {
+      font-size: 1.0625rem;
+      flex-shrink: 0;
+    }
+    .timeline-meta .org {
+      color: var(--muted);
+      font-size: .9375rem;
+    }
+    .timeline-meta .dates {
+      margin-left: auto;
+      font-size: .8125rem;
+      color: var(--muted-2);
+      font-variant-numeric: tabular-nums;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    @media (max-width: 720px) {
+      .timeline-meta .dates { margin-left: 0; }
+    }
+    .timeline-content ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .timeline-content ul li {
+      margin-bottom: 6px;
+      font-size: .9375rem;
+    }
+    .timeline-content ul li:last-child { margin-bottom: 0; }
+
+    /* ---------- Projects ---------- */
+    .section-intro {
+      margin: -16px 0 32px;
+      max-width: 700px;
+      color: var(--muted);
+    }
+    .section-intro a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-strong);
+      transition: border-color var(--transition);
+    }
+    .section-intro a:hover { border-color: var(--accent); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition),
+                  border-color var(--transition);
+    }
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+    .project-card h3 {
+      font-size: 1.0625rem;
+      margin: 0;
+    }
+    .project-card .desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9375rem;
+      flex: 1;
+    }
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 4px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .card-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: .8125rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition), gap var(--transition);
+    }
+    .card-links a:hover {
+      color: var(--accent-hover);
+      gap: 8px;
+    }
+    .card-links a svg { width: 14px; height: 14px; }
+
+    /* ---------- Activities ---------- */
+    .activities-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .activities-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .activity-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition),
+                  border-color var(--transition);
+    }
+    .activity-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+    .activity-card h3 { margin-bottom: 4px; }
+    .activity-card .meta {
+      font-size: .8125rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-weight: 500;
+    }
+    .activity-card p {
+      color: var(--muted);
+      font-size: .9375rem;
+      margin: 0;
+    }
+
+    /* ---------- Education ---------- */
+    .education-list {
+      display: grid;
+      gap: 18px;
+    }
+    .education-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      display: grid;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    @media (min-width: 720px) {
+      .education-item {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+        gap: 32px;
+        align-items: start;
+      }
+    }
+    .education-item h3 { margin-bottom: 6px; }
+    .edu-meta .org {
+      color: var(--muted);
+      font-size: .9375rem;
+      margin-bottom: 4px;
+    }
+    .edu-meta .dates {
+      font-size: .8125rem;
+      color: var(--muted-2);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+    .edu-detail {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .edu-detail li {
+      margin-bottom: 6px;
+      font-size: .9375rem;
+    }
+    .edu-detail li:last-child { margin-bottom: 0; }
+
+    /* ---------- Contact ---------- */
+    #contact {
+      background: linear-gradient(180deg, transparent 0%, rgba(241, 245, 249, 0.5) 100%);
+    }
+    .contact-text {
+      color: var(--muted);
+      font-size: 1.0625rem;
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+    .contact-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted-2);
+      font-size: .8125rem;
+    }
+
+    /* ---------- Reveal on scroll ---------- */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 600ms cubic-bezier(.4, 0, .2, 1),
+                  transform 600ms cubic-bezier(.4, 0, .2, 1);
+    }
+    [data-reveal].in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Focus ---------- */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .pills span:focus-visible,
+    .btn:focus-visible { outline-offset: 3px; }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="nav-sentinel" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav-inner" aria-label="Primary">
+      <a href="#hero" class="brand">William Eriksson</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Linköping · Sweden</p>
+        <h1 data-reveal>William Eriksson</h1>
+        <p class="tagline" data-reveal>
+          MSc Industrial Engineering &amp; Management — specializing in
+          <strong>Machine Learning</strong> and <strong>Financial Engineering</strong>.
+        </p>
+        <div class="hero-cta" data-reveal>
+          <a href="https://github.com/ErikssonWilliam" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.7-5.5 6 .5.4.9 1.2.9 2.4v3.5c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/william-eriksson-01691a193/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0H5C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V8h3v11zM6.5 6.7a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5zM20 19h-3v-5.5c0-1.4-.6-2.2-1.7-2.2-1.2 0-1.8.8-1.8 2.2V19h-3V8h2.9v1.3c.6-1 1.7-1.7 3.1-1.7 2.2 0 3.5 1.4 3.5 4.1V19z"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:william02erik@gmail.com" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <div class="container narrow">
+        <h2 id="about-h" data-reveal>About</h2>
+        <p data-reveal>
+          Final-year MSc student at Linköping University, blending Machine Learning and Financial Engineering with a Computer Science minor. Recent Junior Data Engineer at Kommuninvest, building dbt + Azure pipelines for credit-risk reporting to Sweden's national statistics agency, with prior data analytics work at BAE Systems Bofors and an exchange semester at Hanyang University, Seoul.
+        </p>
+        <p data-reveal>
+          I'm drawn to quantitative finance, applied ML, and shipping things end-to-end — from notebook to production.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <div class="container">
+        <h2 id="skills-h" data-reveal>Skills</h2>
+        <div class="skills-groups">
+          <div class="skill-group" data-reveal>
+            <h3>Languages</h3>
+            <div class="pills">
+              <span>Python</span><span>Java</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span><span>R</span><span>C# (.NET)</span><span>MATLAB</span><span>HTML</span><span>CSS</span><span>Ada</span><span>VBA</span>
+            </div>
+          </div>
+          <div class="skill-group" data-reveal>
+            <h3>Data &amp; ML</h3>
+            <div class="pills">
+              <span>dbt</span><span>Airflow</span><span>PyTorch</span><span>Vision Transformers</span><span>GARCH / EWMA</span><span>Monte Carlo</span><span>CVaR / EVT</span><span>Time Series</span>
+            </div>
+          </div>
+          <div class="skill-group" data-reveal>
+            <h3>Tools &amp; Platforms</h3>
+            <div class="pills">
+              <span>Azure</span><span>Azure DevOps</span><span>SAP</span><span>Power BI</span><span>Excel</span><span>PowerPoint</span>
+            </div>
+          </div>
+          <div class="skill-group" data-reveal>
+            <h3>Spoken Languages</h3>
+            <div class="pills">
+              <span>Swedish (Native)</span><span>English (C2)</span><span>French (A2)</span>
+            </div>
+          </div>
+          <div class="skill-group" data-reveal>
+            <h3>Certificates</h3>
+            <div class="pills">
+              <span>McKinsey Forward Program</span><span>Driver's License (B)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-h">
+      <div class="container">
+        <h2 id="experience-h" data-reveal>Experience</h2>
+        <ol class="timeline">
+          <li class="timeline-item" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <h3>Junior Data Engineer</h3>
+                <span class="org">Kommuninvest · Örebro</span>
+                <span class="dates">Jun 2025 — Aug 2025</span>
+              </div>
+              <ul>
+                <li>Translated financial requirements into a structured dataset by creating dbt models, then automated a Python workflow on top to generate credit-risk reports — a key deliverable for the Swedish Agency of Statistics (SCB).</li>
+                <li>Engineered and deployed the solution on Microsoft Azure, integrating it into a web platform with JavaScript and HTML; presented the solution and recommendations expected to reach 35+ employees.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline-item" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <h3>Data Analyst</h3>
+                <span class="org">BAE Systems Bofors · Karlskoga</span>
+                <span class="dates">Jun 2023 — Aug 2024</span>
+              </div>
+              <ul>
+                <li>Identified, collected, and analyzed data by interviewing coworkers and reviewing large databases to assess procurement-department performance.</li>
+                <li>Used Excel and Power BI to visualize results, demonstrating the ability to interpret data and conduct thorough analysis.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline-item" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <h3>Teaching Assistant</h3>
+                <span class="org">Linköping University · Linköping</span>
+                <span class="dates">Sep 2022 — Jun 2024</span>
+              </div>
+              <ul>
+                <li>Taught 15 students weekly in Linear Algebra; lowered the final-exam failing rate from 33% to 25%.</li>
+                <li>Created and graded written exams for 200+ students in Economic Analysis, sharpening creativity and attention to detail.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-h">
+      <div class="container">
+        <h2 id="projects-h" data-reveal>Projects</h2>
+        <p class="section-intro" data-reveal>
+          A selection from <a href="https://github.com/ErikssonWilliam" target="_blank" rel="noopener noreferrer">github.com/ErikssonWilliam</a> — finance, ML, and full-stack work.
+        </p>
+        <div class="projects-grid">
+
+          <article class="project-card" data-reveal>
+            <h3>PanoraGuard</h3>
+            <p class="desc">Security-surveillance platform built with AXIS Communications. Course-led team project, deployed to production.</p>
+            <div class="pills compact">
+              <span>JavaScript</span><span>Full-stack</span><span>AXIS</span>
+            </div>
+            <div class="card-links">
+              <a href="https://panoraguard.se/" target="_blank" rel="noopener noreferrer">Live demo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+              <a href="https://github.com/ErikssonWilliam/PanoraGuard" target="_blank" rel="noopener noreferrer">GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <h3>Finetuned Open-CLIP</h3>
+            <p class="desc">Semi-supervised fine-tuning of OpenAI CLIP with Vision Transformers; image-to-text and text-to-image retrieval over Google Earth photos.</p>
+            <div class="pills compact">
+              <span>Python</span><span>PyTorch</span><span>Vision Transformers</span><span>Contrastive Learning</span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/ErikssonWilliam/Finetuned-Open-CLIP" target="_blank" rel="noopener noreferrer">GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <h3>ReturnoScope Terminal</h3>
+            <p class="desc">Portfolio-management and risk-analysis terminal for investors and analysts — track performance, analyze risk, forecast returns.</p>
+            <div class="pills compact">
+              <span>TypeScript</span><span>Finance</span><span>Risk Metrics</span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/ErikssonWilliam/returno-scope-terminal" target="_blank" rel="noopener noreferrer">GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <h3>Algorithmic Trading</h3>
+            <p class="desc">Combines Machine Learning with quant strategies, including Monte Carlo simulation of stock portfolios.</p>
+            <div class="pills compact">
+              <span>Python</span><span>ML</span><span>Monte Carlo</span><span>Quant</span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/ErikssonWilliam/Algorithmic_Trading" target="_blank" rel="noopener noreferrer">GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <h3>Financial Risk Management</h3>
+            <p class="desc">Volatility modeling with GARCH, EWMA, and EqWMA; market-risk management using CVaR, EVT, risk factors, and Monte Carlo simulation.</p>
+            <div class="pills compact">
+              <span>MATLAB</span><span>GARCH</span><span>CVaR</span><span>EVT</span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/ErikssonWilliam/Financial-Risk-Management" target="_blank" rel="noopener noreferrer">GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <h3>Portfolio Management</h3>
+            <p class="desc">Mean-variance optimization, PCA of the yield curve (shift / twist / butterfly), and currency / market hedging with futures and forwards.</p>
+            <div class="pills compact">
+              <span>MATLAB</span><span>Optimization</span><span>PCA</span><span>Hedging</span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/ErikssonWilliam/Portfolio-Management" target="_blank" rel="noopener noreferrer">GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <h3>Financial Instruments Valuation</h3>
+            <p class="desc">Exotic options via binomial trees and Black-Scholes-Merton; bond and interest-rate-swap pricing with bootstrapping, modified duration, and convexity.</p>
+            <div class="pills compact">
+              <span>MATLAB</span><span>Black-Scholes</span><span>Options</span><span>Bonds</span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/ErikssonWilliam/Financial-Instruments-Valuation" target="_blank" rel="noopener noreferrer">GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <h3>Märkesstacken</h3>
+            <p class="desc">Bachelor Thesis &amp; startup idea — an e-commerce platform for buying and selling university-related merch.</p>
+            <div class="pills compact">
+              <span>JavaScript</span><span>Full-stack</span><span>Bachelor Thesis</span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/ErikssonWilliam/Markesstacken" target="_blank" rel="noopener noreferrer">GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="activities" aria-labelledby="activities-h">
+      <div class="container">
+        <h2 id="activities-h" data-reveal>Activities &amp; Leadership</h2>
+        <div class="activities-grid">
+          <article class="activity-card" data-reveal>
+            <h3>Interactive Events Team</h3>
+            <p class="meta">LiU AI Society · Board Member · May 2025 — Present</p>
+            <p>Develop and facilitate interactive events to grow student interest in AI and Machine Learning, and to make complex technical topics accessible.</p>
+          </article>
+          <article class="activity-card" data-reveal>
+            <h3>Corporate Contact</h3>
+            <p class="meta">Engineers Without Borders Sweden · May 2022 — Jun 2023</p>
+            <p>Established and maintained sponsorships for the organization, partnering with 10% of the companies contacted.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="education-h">
+      <div class="container">
+        <h2 id="education-h" data-reveal>Education</h2>
+        <div class="education-list">
+          <article class="education-item" data-reveal>
+            <div class="edu-meta">
+              <h3>MSc Industrial Engineering &amp; Management</h3>
+              <p class="org">Linköping University</p>
+              <p class="dates">Aug 2021 — Jun 2026</p>
+            </div>
+            <ul class="edu-detail">
+              <li>Master specializations in <strong>Machine Learning</strong> and <strong>Financial Engineering</strong>; technical minor in <strong>Computer Science</strong>.</li>
+              <li>GPA 4.58 / 5.0.</li>
+              <li>Recipient of three academic scholarships — Dr. Erik Johnsson Stipendiefond, Adolf Lindgrens Stipendiefond, Kamrathjälpsfonden — totaling over 55,000 SEK.</li>
+            </ul>
+          </article>
+          <article class="education-item" data-reveal>
+            <div class="edu-meta">
+              <h3>Exchange Semester</h3>
+              <p class="org">Hanyang University, Seoul</p>
+              <p class="dates">Aug 2023 — Dec 2023</p>
+            </div>
+            <ul class="edu-detail">
+              <li>Awarded one of three exchange spots from Linköping University.</li>
+              <li>GPA 92.5 / 100.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="container narrow">
+        <h2 id="contact-h" data-reveal>Contact</h2>
+        <p class="contact-text" data-reveal>
+          Open to roles in quantitative finance, data engineering, and applied ML. Best reached by email — happy to chat.
+        </p>
+        <div class="contact-cta" data-reveal>
+          <a href="mailto:william02erik@gmail.com" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            william02erik@gmail.com
+          </a>
+          <a href="https://github.com/ErikssonWilliam" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.7-5.5 6 .5.4.9 1.2.9 2.4v3.5c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/william-eriksson-01691a193/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0H5C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V8h3v11zM6.5 6.7a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5zM20 19h-3v-5.5c0-1.4-.6-2.2-1.7-2.2-1.2 0-1.8.8-1.8 2.2V19h-3V8h2.9v1.3c.6-1 1.7-1.7 3.1-1.7 2.2 0 3.5 1.4 3.5 4.1V19z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> William Eriksson · Built with HTML, CSS &amp; JS</small>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var navToggle = document.querySelector('.nav-toggle');
+      var navMenu = document.getElementById('nav-menu');
+
+      navToggle.addEventListener('click', function () {
+        var expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        navMenu.classList.toggle('open', !expanded);
+      });
+
+      navMenu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          navToggle.setAttribute('aria-expanded', 'false');
+          navMenu.classList.remove('open');
+        });
+      });
+
+      var header = document.querySelector('.site-header');
+      var sentinel = document.getElementById('nav-sentinel');
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          header.classList.toggle('scrolled', !entries[0].isIntersecting);
+        }, { threshold: 0 }).observe(sentinel);
+      }
+
+      var sections = document.querySelectorAll('main section[id]');
+      var navLinks = navMenu.querySelectorAll('a');
+      var linkMap = {};
+      navLinks.forEach(function (a) {
+        linkMap[a.getAttribute('href').slice(1)] = a;
+      });
+      if ('IntersectionObserver' in window) {
+        var activeObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              navLinks.forEach(function (l) { l.classList.remove('active'); });
+              var link = linkMap[e.target.id];
+              if (link) link.classList.add('active');
+            }
+          });
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+        sections.forEach(function (s) { activeObserver.observe(s); });
+
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in-view');
+              revealObserver.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('[data-reveal]').forEach(function (el) {
+          revealObserver.observe(el);
+        });
+      } else {
+        document.querySelectorAll('[data-reveal]').forEach(function (el) {
+          el.classList.add('in-view');
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = a.getAttribute('href').slice(1);
+          if (!id) return;
+          var target = document.getElementById(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
