@@ -497,6 +497,20 @@
       color: var(--muted);
       line-height: 1.4;
     }
+    .about-lead {
+      margin: 0 0 24px;
+      color: var(--text);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      max-width: 60ch;
+    }
+    .about-lead strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    @media (min-width: 720px) {
+      .about-lead { font-size: 1.125rem; }
+    }
     .about-tagline {
       margin-top: 24px;
       color: var(--muted);
@@ -910,6 +924,9 @@
       <div class="container narrow">
         <h2 id="about-h" data-reveal>About</h2>
         <div class="section-card" data-reveal>
+          <p class="about-lead">
+            At <strong>Kommuninvest</strong>, I build the data infrastructure behind credit-risk reporting: dbt models, cloud pipelines, and Azure-deployed workflows that turn raw finance data into financial reports.
+          </p>
           <div class="about-bento">
             <div class="bento-tile">
               <span class="bento-label">Now</span>
@@ -917,7 +934,7 @@
               <span class="bento-meta">Kommuninvest · Örebro</span>
             </div>
             <div class="bento-tile">
-              <span class="bento-label">Studied</span>
+              <span class="bento-label">Education</span>
               <span class="bento-title">MSc Industrial Engineering &amp; Management</span>
               <span class="bento-meta">Linköping University · ML &amp; Financial Engineering</span>
             </div>
