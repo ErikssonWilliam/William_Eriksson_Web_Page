@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>William Eriksson — MSc Industrial Engineering & Management</title>
-  <meta name="description" content="William Eriksson — MSc student at Linköping University specializing in Machine Learning & Financial Engineering.">
+  <title>William Eriksson · MSc Industrial Engineering & Management</title>
+  <meta name="description" content="William Eriksson · MSc student at Linköping University specializing in Machine Learning & Financial Engineering.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fafafa;
+      --bg: #fbfbfa;
       --surface: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --muted-2: #94a3b8;
-      --accent: #475569;
-      --accent-hover: #334155;
-      --accent-soft: #f1f5f9;
-      --border: #e2e8f0;
-      --border-strong: #cbd5e1;
+      --text: #0b1220;
+      --muted: #5b6473;
+      --muted-2: #8a94a4;
+      --accent: #1d4ed8;
+      --accent-hover: #1e3a8a;
+      --accent-soft: #eef4ff;
+      --accent-ink: #0a2472;
+      --border: #e6e8ee;
+      --border-strong: #c9ced9;
       --shadow-sm: 0 1px 2px rgba(15, 23, 42, .04);
-      --shadow-md: 0 4px 12px rgba(15, 23, 42, .08);
-      --radius: 12px;
-      --radius-sm: 8px;
-      --max: 1100px;
+      --shadow-md: 0 10px 30px rgba(15, 23, 42, .06);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --max: 1120px;
       --transition: 200ms cubic-bezier(.4, 0, .2, 1);
     }
 
@@ -120,7 +121,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(250, 250, 250, 0.72);
+      background: rgba(251, 251, 250, 0.72);
       backdrop-filter: saturate(180%) blur(12px);
       -webkit-backdrop-filter: saturate(180%) blur(12px);
       transition: background var(--transition), box-shadow var(--transition);
@@ -272,14 +273,30 @@
 
     /* ---------- Hero ---------- */
     .hero {
-      padding: clamp(64px, 12vw, 128px) 0 clamp(64px, 10vw, 112px);
+      padding: clamp(56px, 10vw, 112px) 0 clamp(48px, 8vw, 96px);
     }
-    .hero h1 { margin-bottom: 20px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (min-width: 860px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: 72px;
+      }
+    }
+    .hero h1 {
+      margin-bottom: 20px;
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      letter-spacing: -0.03em;
+    }
     .hero .tagline {
       font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
       color: var(--muted);
       margin-bottom: 36px;
-      max-width: 720px;
+      max-width: 560px;
       line-height: 1.5;
     }
     .hero .tagline strong {
@@ -290,6 +307,101 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+    }
+    .hero-portrait {
+      position: relative;
+      justify-self: center;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 4 / 5;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--accent-soft);
+      box-shadow: 0 20px 60px -20px rgba(29, 78, 216, .28),
+                  0 0 0 1px rgba(15, 23, 42, .04);
+    }
+    .hero-portrait::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(10, 36, 114, .08) 100%);
+      pointer-events: none;
+    }
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ---------- Credential cards ---------- */
+    .credentials {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: clamp(48px, 6vw, 72px);
+    }
+    @media (min-width: 720px) {
+      .credentials { grid-template-columns: 1fr 1fr; gap: 20px; }
+    }
+    .credential-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition),
+                  border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .credential-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(.5);
+      transform-origin: top;
+      transition: transform var(--transition);
+    }
+    .credential-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+    .credential-card:hover::before { transform: scaleY(1); }
+    .credential-card .cred-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--accent);
+    }
+    .credential-card .cred-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .credential-card h3 {
+      font-size: 1.125rem;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+    .credential-card .cred-meta {
+      color: var(--muted);
+      font-size: .9375rem;
+      margin: 0;
     }
 
     /* ---------- Skills ---------- */
@@ -648,25 +760,45 @@
   <main id="main">
     <section class="hero" id="hero">
       <div class="container">
-        <p class="eyebrow" data-reveal>Linköping · Sweden</p>
-        <h1 data-reveal>William Eriksson</h1>
-        <p class="tagline" data-reveal>
-          MSc Industrial Engineering &amp; Management — specializing in
-          <strong>Machine Learning</strong> and <strong>Financial Engineering</strong>.
-        </p>
-        <div class="hero-cta" data-reveal>
-          <a href="https://github.com/ErikssonWilliam" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.7-5.5 6 .5.4.9 1.2.9 2.4v3.5c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/william-eriksson-01691a193/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0H5C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V8h3v11zM6.5 6.7a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5zM20 19h-3v-5.5c0-1.4-.6-2.2-1.7-2.2-1.2 0-1.8.8-1.8 2.2V19h-3V8h2.9v1.3c.6-1 1.7-1.7 3.1-1.7 2.2 0 3.5 1.4 3.5 4.1V19z"/></svg>
-            LinkedIn
-          </a>
-          <a href="mailto:william02erik@gmail.com" class="btn btn-ghost">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-            Email
-          </a>
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow" data-reveal>Linköping · Sweden</p>
+            <h1 data-reveal>William Eriksson</h1>
+            <p class="tagline" data-reveal>
+              Building things at the intersection of
+              <strong>data</strong>, <strong>machine learning</strong>, and <strong>financial engineering</strong>.
+            </p>
+            <div class="hero-cta" data-reveal>
+              <a href="https://github.com/ErikssonWilliam" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.7-5.5 6 .5.4.9 1.2.9 2.4v3.5c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/william-eriksson-01691a193/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0H5C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V8h3v11zM6.5 6.7a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5zM20 19h-3v-5.5c0-1.4-.6-2.2-1.7-2.2-1.2 0-1.8.8-1.8 2.2V19h-3V8h2.9v1.3c.6-1 1.7-1.7 3.1-1.7 2.2 0 3.5 1.4 3.5 4.1V19z"/></svg>
+                LinkedIn
+              </a>
+              <a href="mailto:william02erik@gmail.com" class="btn btn-ghost">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                Email
+              </a>
+            </div>
+          </div>
+          <div class="hero-portrait" data-reveal>
+            <img src="Kommuninvest_bild.jpeg" alt="Portrait of William Eriksson" width="800" height="1000">
+          </div>
+        </div>
+
+        <div class="credentials">
+          <article class="credential-card" data-reveal>
+            <span class="cred-tag">Studies</span>
+            <h3>MSc Industrial Engineering &amp; Management</h3>
+            <p class="cred-meta">Linköping University · Machine Learning &amp; Financial Engineering</p>
+          </article>
+          <article class="credential-card" data-reveal>
+            <span class="cred-tag">Current role</span>
+            <h3>Data Engineer</h3>
+            <p class="cred-meta">Kommuninvest · Örebro</p>
+          </article>
         </div>
       </div>
     </section>
@@ -678,7 +810,7 @@
           Final-year MSc student at Linköping University, blending Machine Learning and Financial Engineering with a Computer Science minor. Recent Junior Data Engineer at Kommuninvest, building dbt + Azure pipelines for credit-risk reporting to Sweden's national statistics agency, with prior data analytics work at BAE Systems Bofors and an exchange semester at Hanyang University, Seoul.
         </p>
         <p data-reveal>
-          I'm drawn to quantitative finance, applied ML, and shipping things end-to-end — from notebook to production.
+          I'm drawn to quantitative finance, applied ML, and shipping things end-to-end, from notebook to production.
         </p>
       </div>
     </section>
@@ -731,10 +863,10 @@
               <div class="timeline-meta">
                 <h3>Junior Data Engineer</h3>
                 <span class="org">Kommuninvest · Örebro</span>
-                <span class="dates">Jun 2025 — Aug 2025</span>
+                <span class="dates">Jun 2025 – Aug 2025</span>
               </div>
               <ul>
-                <li>Translated financial requirements into a structured dataset by creating dbt models, then automated a Python workflow on top to generate credit-risk reports — a key deliverable for the Swedish Agency of Statistics (SCB).</li>
+                <li>Translated financial requirements into a structured dataset by creating dbt models, then automated a Python workflow on top to generate credit-risk reports, a key deliverable for the Swedish Agency of Statistics (SCB).</li>
                 <li>Engineered and deployed the solution on Microsoft Azure, integrating it into a web platform with JavaScript and HTML; presented the solution and recommendations expected to reach 35+ employees.</li>
               </ul>
             </div>
@@ -745,7 +877,7 @@
               <div class="timeline-meta">
                 <h3>Data Analyst</h3>
                 <span class="org">BAE Systems Bofors · Karlskoga</span>
-                <span class="dates">Jun 2023 — Aug 2024</span>
+                <span class="dates">Jun 2023 – Aug 2024</span>
               </div>
               <ul>
                 <li>Identified, collected, and analyzed data by interviewing coworkers and reviewing large databases to assess procurement-department performance.</li>
@@ -759,7 +891,7 @@
               <div class="timeline-meta">
                 <h3>Teaching Assistant</h3>
                 <span class="org">Linköping University · Linköping</span>
-                <span class="dates">Sep 2022 — Jun 2024</span>
+                <span class="dates">Sep 2022 – Jun 2024</span>
               </div>
               <ul>
                 <li>Taught 15 students weekly in Linear Algebra; lowered the final-exam failing rate from 33% to 25%.</li>
@@ -775,7 +907,7 @@
       <div class="container">
         <h2 id="projects-h" data-reveal>Projects</h2>
         <p class="section-intro" data-reveal>
-          A selection from <a href="https://github.com/ErikssonWilliam" target="_blank" rel="noopener noreferrer">github.com/ErikssonWilliam</a> — finance, ML, and full-stack work.
+          A selection from <a href="https://github.com/ErikssonWilliam" target="_blank" rel="noopener noreferrer">github.com/ErikssonWilliam</a> · finance, ML, and full-stack work.
         </p>
         <div class="projects-grid">
 
@@ -810,7 +942,7 @@
 
           <article class="project-card" data-reveal>
             <h3>ReturnoScope Terminal</h3>
-            <p class="desc">Portfolio-management and risk-analysis terminal for investors and analysts — track performance, analyze risk, forecast returns.</p>
+            <p class="desc">Portfolio-management and risk-analysis terminal for investors and analysts. Track performance, analyze risk, forecast returns.</p>
             <div class="pills compact">
               <span>TypeScript</span><span>Finance</span><span>Risk Metrics</span>
             </div>
@@ -875,7 +1007,7 @@
 
           <article class="project-card" data-reveal>
             <h3>Märkesstacken</h3>
-            <p class="desc">Bachelor Thesis &amp; startup idea — an e-commerce platform for buying and selling university-related merch.</p>
+            <p class="desc">Bachelor Thesis &amp; startup idea. An e-commerce platform for buying and selling university-related merch.</p>
             <div class="pills compact">
               <span>JavaScript</span><span>Full-stack</span><span>Bachelor Thesis</span>
             </div>
@@ -896,12 +1028,12 @@
         <div class="activities-grid">
           <article class="activity-card" data-reveal>
             <h3>Interactive Events Team</h3>
-            <p class="meta">LiU AI Society · Board Member · May 2025 — Present</p>
+            <p class="meta">LiU AI Society · Board Member · May 2025 – Present</p>
             <p>Develop and facilitate interactive events to grow student interest in AI and Machine Learning, and to make complex technical topics accessible.</p>
           </article>
           <article class="activity-card" data-reveal>
             <h3>Corporate Contact</h3>
-            <p class="meta">Engineers Without Borders Sweden · May 2022 — Jun 2023</p>
+            <p class="meta">Engineers Without Borders Sweden · May 2022 – Jun 2023</p>
             <p>Established and maintained sponsorships for the organization, partnering with 10% of the companies contacted.</p>
           </article>
         </div>
@@ -916,19 +1048,19 @@
             <div class="edu-meta">
               <h3>MSc Industrial Engineering &amp; Management</h3>
               <p class="org">Linköping University</p>
-              <p class="dates">Aug 2021 — Jun 2026</p>
+              <p class="dates">Aug 2021 – Jun 2026</p>
             </div>
             <ul class="edu-detail">
               <li>Master specializations in <strong>Machine Learning</strong> and <strong>Financial Engineering</strong>; technical minor in <strong>Computer Science</strong>.</li>
               <li>GPA 4.58 / 5.0.</li>
-              <li>Recipient of three academic scholarships — Dr. Erik Johnsson Stipendiefond, Adolf Lindgrens Stipendiefond, Kamrathjälpsfonden — totaling over 55,000 SEK.</li>
+              <li>Recipient of three academic scholarships (Dr. Erik Johnsson Stipendiefond, Adolf Lindgrens Stipendiefond, Kamrathjälpsfonden), totaling over 55,000 SEK.</li>
             </ul>
           </article>
           <article class="education-item" data-reveal>
             <div class="edu-meta">
               <h3>Exchange Semester</h3>
               <p class="org">Hanyang University, Seoul</p>
-              <p class="dates">Aug 2023 — Dec 2023</p>
+              <p class="dates">Aug 2023 – Dec 2023</p>
             </div>
             <ul class="edu-detail">
               <li>Awarded one of three exchange spots from Linköping University.</li>
@@ -943,7 +1075,7 @@
       <div class="container narrow">
         <h2 id="contact-h" data-reveal>Contact</h2>
         <p class="contact-text" data-reveal>
-          Open to roles in quantitative finance, data engineering, and applied ML. Best reached by email — happy to chat.
+          Open to roles in quantitative finance, data engineering, and applied ML. Best reached by email. Happy to chat.
         </p>
         <div class="contact-cta" data-reveal>
           <a href="mailto:william02erik@gmail.com" class="btn btn-primary">
