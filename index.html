@@ -454,49 +454,6 @@
       background: var(--bg);
     }
 
-    /* ---------- About bento ---------- */
-    .about-bento {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 4px;
-    }
-    @media (min-width: 720px) {
-      .about-bento { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    }
-    .bento-tile {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: border-color var(--transition), transform var(--transition);
-    }
-    .bento-tile:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-1px);
-    }
-    .bento-tile .bento-label {
-      font-size: .6875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      color: var(--accent);
-    }
-    .bento-tile .bento-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-    .bento-tile .bento-meta {
-      font-size: .875rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
     .about-lead {
       margin: 0 0 24px;
       color: var(--text);
@@ -925,27 +882,10 @@
         <h2 id="about-h" data-reveal>About</h2>
         <div class="section-card" data-reveal>
           <p class="about-lead">
-            At <strong>Kommuninvest</strong>, I build the data infrastructure behind credit-risk reporting. This includes dbt models, pipelines, and workflows that turn raw data into financial reports.
+            Engineer passionate about quantitative finance and applied ML. Studied at Linköping University with a focus on Machine Learning & Financial Engineering. Also spent a semester on exchange at Hanyang University in Seoul, South Korea.
           </p>
-          <div class="about-bento">
-            <div class="bento-tile">
-              <span class="bento-label">Now</span>
-              <span class="bento-title">Data Engineer</span>
-              <span class="bento-meta">Kommuninvest · Örebro</span>
-            </div>
-            <div class="bento-tile">
-              <span class="bento-label">Education</span>
-              <span class="bento-title">Linköping University</span>
-              <span class="bento-meta">MSc Industrial Engineering &amp; Management · ML &amp; Financial Engineering</span>
-            </div>
-            <div class="bento-tile">
-              <span class="bento-label">Lived</span>
-              <span class="bento-title">Seoul, South Korea</span>
-              <span class="bento-meta">Exchange semester · Hanyang University</span>
-            </div>
-          </div>
           <p class="about-tagline">
-            Passionate about quantitative finance and applied ML. Outside of work: football, the gym, and exploring the world.
+            At <strong>Kommuninvest</strong>, I build the data infrastructure behind credit-risk reporting. This includes dbt models, pipelines, and workflows that turn raw data into financial reports. Outside of work I enjoy football, the gym, and exploring the world.
           </p>
         </div>
       </div>
