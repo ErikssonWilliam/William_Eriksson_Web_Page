@@ -443,28 +443,25 @@ p:last-child { margin-bottom: 0; }
   background: var(--bg);
 }
 
-.about-lead {
-  margin: 0 0 24px;
-  color: var(--text);
-  font-size: 1.0625rem;
-  line-height: 1.6;
+/* Both About paragraphs share one treatment. Scoped under .section-card so
+   they outrank `.section-card p` above, which would otherwise win on specificity. */
+.section-card .about-lead,
+.section-card .about-tagline {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
   max-width: 60ch;
 }
-.about-lead strong {
+.section-card .about-lead { margin: 0 0 20px; }
+.section-card .about-tagline { margin: 0; }
+.about-lead strong,
+.about-tagline strong {
   color: var(--text);
   font-weight: 600;
 }
 @media (min-width: 720px) {
-  .about-lead { font-size: 1.125rem; }
-}
-.about-tagline {
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-@media (min-width: 720px) {
-  .about-tagline { font-size: 1.0625rem; }
+  .section-card .about-lead,
+  .section-card .about-tagline { font-size: 1.0625rem; }
 }
 
 /* ---------- Skills ---------- */
