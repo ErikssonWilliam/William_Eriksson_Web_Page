@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prize Drop · University Fair Minigame</title>
+  <meta name="description" content="A case-opening minigame for the university fair stand. Spin the reel and win Red Bull, candy, and swag.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mini_game.css">
+</head>
+<body>
+  <a class="skip-link" href="#game">Skip to the game</a>
+
+  <header class="game-header">
+    <div class="wrap header-inner">
+      <a href="../" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        William Eriksson
+      </a>
+      <span class="header-tag">Minigame</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">University Fair</p>
+        <h1>Prize&nbsp;Drop</h1>
+        <p class="lede">
+          Spin the reel and walk away with something. Every spin lands on a real
+          prize &mdash; the only question is how rare it is.
+        </p>
+      </div>
+    </section>
+
+    <section id="game" class="game">
+      <div class="wrap">
+        <div class="case">
+          <div class="reel-frame">
+            <div class="reel-viewport" id="viewport">
+              <div class="reel-strip" id="strip"></div>
+            </div>
+            <div class="reel-marker" aria-hidden="true"></div>
+            <div class="reel-fade reel-fade-l" aria-hidden="true"></div>
+            <div class="reel-fade reel-fade-r" aria-hidden="true"></div>
+          </div>
+
+          <div class="controls">
+            <button type="button" id="spin" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span id="spin-label">Spin the reel</span>
+            </button>
+            <button type="button" id="sound" class="btn btn-ghost" aria-pressed="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+              <span id="sound-label">Sound on</span>
+            </button>
+          </div>
+
+          <!-- Live region: the spin result is announced for screen readers -->
+          <div class="result" id="result" role="status" aria-live="polite"></div>
+        </div>
+
+        <div class="legend">
+          <span class="legend-title">Rarity</span>
+          <ul class="legend-list">
+            <li><i class="swatch t-common"></i>Common</li>
+            <li><i class="swatch t-uncommon"></i>Uncommon</li>
+            <li><i class="swatch t-rare"></i>Rare</li>
+            <li><i class="swatch t-legendary"></i>Legendary</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="haul" id="haul-section" hidden>
+      <div class="wrap">
+        <div class="haul-head">
+          <h2>Your haul</h2>
+          <button type="button" id="reset" class="link-btn">Clear</button>
+        </div>
+        <ul class="haul-list" id="haul"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="game-footer">
+    <div class="wrap">
+      <small>&copy; <span id="year"></span> William Eriksson &middot; <a href="../">Back to portfolio</a></small>
+    </div>
+  </footer>
+
+  <script src="mini_game.js"></script>
+</body>
+</html>
