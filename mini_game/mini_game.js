@@ -1,5 +1,5 @@
 /* ============================================================
-   Prize Drop — CS:GO-style case reel, rigged so every spin wins.
+   Lyckohjulet - CS:GO-style case reel, rigged so every spin wins.
 
    How the rig works: the winning prize is chosen FIRST (weighted by
    rarity), then the strip is built with that prize planted at a known
@@ -10,30 +10,30 @@
   'use strict';
 
   /* ---------- Prizes ----------
-     `weight` is relative, not a percentage — the picker normalises it,
+     `weight` is relative, not a percentage - the picker normalises it,
      so you can add or remove items without rebalancing the others. */
   var PRIZES = [
-    { name: 'Sticker Pack',   icon: '🏷️', tier: 'common',     weight: 22 },
-    { name: 'Branded Pen',    icon: '🖊️', tier: 'common',     weight: 20 },
-    { name: 'Candy Bag',      icon: '🍬', tier: 'common',     weight: 18 },
-    { name: 'Chocolate Bar',  icon: '🍫', tier: 'uncommon',   weight: 12 },
+    { name: 'Klistermärken',  icon: '🏷️', tier: 'common',     weight: 22 },
+    { name: 'Penna',          icon: '🖊️', tier: 'common',     weight: 20 },
+    { name: 'Godispåse',      icon: '🍬', tier: 'common',     weight: 18 },
+    { name: 'Chokladkaka',    icon: '🍫', tier: 'uncommon',   weight: 12 },
     { name: 'Red Bull',       icon: '🥤', tier: 'uncommon',   weight: 12 },
-    { name: 'Notebook',       icon: '📓', tier: 'uncommon',   weight: 8  },
-    { name: 'Coffee Voucher', icon: '☕', tier: 'rare',       weight: 6  },
-    { name: 'Tote Bag',       icon: '🛍️', tier: 'rare',       weight: 5  },
-    { name: 'USB Stick',      icon: '💾', tier: 'rare',       weight: 4  },
-    { name: 'Snapback Cap',   icon: '🧢', tier: 'legendary',  weight: 2  },
+    { name: 'Anteckningsbok', icon: '📓', tier: 'uncommon',   weight: 8  },
+    { name: 'Fikakupong',     icon: '☕', tier: 'rare',       weight: 6  },
+    { name: 'Tygkasse',       icon: '🛍️', tier: 'rare',       weight: 5  },
+    { name: 'USB-minne',      icon: '💾', tier: 'rare',       weight: 4  },
+    { name: 'Keps',           icon: '🧢', tier: 'legendary',  weight: 2  },
     { name: 'Hoodie',         icon: '🧥', tier: 'legendary',  weight: 1.5 },
-    { name: 'Headphones',     icon: '🎧', tier: 'legendary',  weight: 1  }
+    { name: 'Hörlurar',       icon: '🎧', tier: 'legendary',  weight: 1  }
   ];
 
   var TIER_LABEL = {
-    common: 'Common', uncommon: 'Uncommon',
-    rare: 'Rare', legendary: 'Legendary'
+    common: 'Vanlig', uncommon: 'Ovanlig',
+    rare: 'Sällsynt', legendary: 'Legendarisk'
   };
 
   var STRIP_LEN = 64;   // tiles built per spin
-  var WIN_INDEX = 58;   // where the winner is planted — long run-up, short tail
+  var WIN_INDEX = 58;   // where the winner is planted - long run-up, short tail
   var SPIN_MS   = 6200;
 
   var strip    = document.getElementById('strip');
@@ -189,7 +189,7 @@
     if (spinning) return;
     spinning = true;
     spinBtn.disabled = true;
-    spinLbl.textContent = 'Spinning…';
+    spinLbl.textContent = 'Snurrar…';
     resultEl.innerHTML = '';
 
     var winner = pickPrize();
@@ -231,7 +231,7 @@
       lastWin = { index: WIN_INDEX, jitter: jitter };
       spinning = false;
       spinBtn.disabled = false;
-      spinLbl.textContent = 'Spin again';
+      spinLbl.textContent = 'Snurra igen';
       reveal(winner);
       chime(winner.tier);
     };
@@ -244,7 +244,7 @@
     card.innerHTML =
       '<span class="icon">' + prize.icon + '</span>' +
       '<div>' +
-        '<p class="won">You won</p>' +
+        '<p class="won">Du vann</p>' +
         '<h3></h3>' +
         '<span class="tier-chip t-' + prize.tier + '"></span>' +
       '</div>';
@@ -295,12 +295,26 @@
   soundBtn.addEventListener('click', function () {
     soundOn = !soundOn;
     soundBtn.setAttribute('aria-pressed', String(soundOn));
-    soundLbl.textContent = soundOn ? 'Sound on' : 'Sound off';
+    soundLbl.textContent = soundOn ? 'Ljud på' : 'Ljud av';
   });
 
   resetBtn.addEventListener('click', function () {
     haul = [];
     renderHaul();
+  });
+
+  /* Spacebar spins. Handy at the stand: no need to aim for the button.
+     Skipped when a button or link has focus, because the browser already
+     fires a click there on space - handling it here too would double-trigger. */
+  document.addEventListener('keydown', function (e) {
+    if (e.code !== 'Space' && e.key !== ' ') return;
+    if (e.repeat) return;                    // ignore key-held autorepeat
+    var t = e.target;
+    if (t && (t.tagName === 'BUTTON' || t.tagName === 'A' ||
+              t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' ||
+              t.tagName === 'SELECT' || t.isContentEditable)) return;
+    e.preventDefault();                      // stop the page scrolling
+    spin();
   });
 
   // Keep the won tile under the marker when the window changes size
