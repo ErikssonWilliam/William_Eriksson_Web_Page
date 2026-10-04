@@ -16,15 +16,11 @@
     { name: 'Klistermärken',  icon: '🏷️', tier: 'common',     weight: 22 },
     { name: 'Penna',          icon: '🖊️', tier: 'common',     weight: 20 },
     { name: 'Godispåse',      icon: '🍬', tier: 'common',     weight: 18 },
-    { name: 'Chokladkaka',    icon: '🍫', tier: 'uncommon',   weight: 12 },
+    { name: 'Choklad',        icon: '🍫', tier: 'uncommon',   weight: 12 },
     { name: 'Red Bull',       icon: '🥤', tier: 'uncommon',   weight: 12 },
     { name: 'Anteckningsbok', icon: '📓', tier: 'uncommon',   weight: 8  },
-    { name: 'Fikakupong',     icon: '☕', tier: 'rare',       weight: 6  },
-    { name: 'Tygkasse',       icon: '🛍️', tier: 'rare',       weight: 5  },
-    { name: 'USB-minne',      icon: '💾', tier: 'rare',       weight: 4  },
-    { name: 'Keps',           icon: '🧢', tier: 'legendary',  weight: 2  },
-    { name: 'Hoodie',         icon: '🧥', tier: 'legendary',  weight: 1.5 },
-    { name: 'Hörlurar',       icon: '🎧', tier: 'legendary',  weight: 1  }
+    { name: 'Kaffe',     icon: '☕', tier: 'rare',       weight: 6  },
+    { name: 'Celsius',     icon: '🧊', tier: 'legendary',       weight: 6  },
   ];
 
   var TIER_LABEL = {
