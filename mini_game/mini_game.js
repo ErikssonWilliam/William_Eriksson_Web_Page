@@ -13,9 +13,9 @@
      `weight` is relative, not a percentage - the picker normalises it,
      so you can add or remove items without rebalancing the others. */
   var PRIZES = [
-    { name: 'Popcorn',      icon: '🍿', tier: 'common',     weight: 60 },
-    { name: 'Bar',        icon: '🍫', tier: 'rare',   weight: 25 },
-    { name: 'Dricka',       icon: '🥤', tier: 'legendary',   weight: 15 },
+    { name: 'Popcorn',      icon: '🍿', tier: 'common',     weight: 40 },
+    { name: 'Bar',        icon: '🍫', tier: 'rare',   weight: 30 },
+    { name: 'Dricka',       icon: '🥤', tier: 'legendary',   weight: 30},
   ];
 
   var TIER_LABEL = {
